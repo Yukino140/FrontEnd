@@ -1,80 +1,103 @@
 <section class="padding-y">
     <div class="container">
-    
-      <!-- ========= content items ========= -->
-      <div class="row">
-        <div class="col-lg-4 col-md-6 col-sm-6">
-          <figure class="card card-product-grid">
-          <div class="img-wrap"> 
-            <a routerLink='/detail'> <img src="assets/img/pc 3.jpg"> </a>  
-          </div>
-          <figcaption class="info-wrap border-top">
-            <div class="price-wrap">
-            <strong class="price">$99.00</strong>
-            <del class="price-old">$170.00</del>
-            </div> <!-- price-wrap.// -->
-            <p class="title mb-2">T-shirts with multiple colors, for men and lady</p>
-            
-            <a routerLink="/cart" class="btn btn-primary">Add to cart</a>
-            <a href="#" class="btn btn-light btn-icon"> <i class="fa fa-heart"></i> </a>
-          </figcaption>
-          </figure>
-        </div> <!-- col end.// -->
-        <div class="row">
+
+        <!-- ========= content items ========= -->
+        <div class="row" *ngFor="let i of Produit">
+            <div class="col-lg-4 col-md-6 col-sm-6">
+                <figure class="card card-product-grid">
+                    <div class="img-wrap">
+                        <a routerLink="/detail" (click)="toDetails(i.id)"><img src="assets/img/pc 1.jpg"></a>
+                    </div>
+                    <figcaption class="info-wrap border-top">
+                        <div class="price-wrap">
+                            <strong class="price">{{i.prix}}DT</strong>
+                            <del class="price-old">{{i.prixAncient}}</del>
+                        </div>
+                        <!-- price-wrap.// -->
+                        <p class="title mb-2">{{i.description}}</p>
+                        <dialog id="dialog">
+                            <h3>Produit ajouté au panier avec succès</h3>
+                            <form method="dialog">
+                                <article class="row gy-3 mb-4">
+
+
+                                    <div class="aside"><img src="assets/img/pc 1.jpg" class="img-sm img-thumbnail"></div>
+                                    <div>
+                                        <h3>{{i.nomProd}}</h3>
+                                    </div>
+
+
+
+
+                                </article>
+                            </form>
+                            <button class="btn btn-primary" onclick="dialog.close()">Continuer</button>
+                            <button class="btn btn-secondary" (click)="toPanier()">Commander</button>
+                        </dialog>
+
+                        <a routerLink="/cart" class="btn btn-primary" onclick="dialog.showModal()" (click)="addToCart(i.id)">Add to cart</a>
+                        <a href="#" class="btn btn-light btn-icon"> <i class="fa fa-heart"></i> </a>
+                    </figcaption>
+                </figure>
+            </div>
+
+
+
+            <!-- col end.// -->
+            <!-- <div class="row">
             <div class="col-lg-4 col-md-6 col-sm-6">
               <figure class="card card-product-grid">
-              <div class="img-wrap"> 
-                <a routerLink='/detail'> <img src="assets/img/pc 2.jpg"> </a> 
+              <div class="img-wrap">
+                <a routerLink='/detail'> <img src="assets/img/pc 2.jpg"> </a>
               </div>
               <figcaption class="info-wrap border-top">
                 <div class="price-wrap">
                 <strong class="price">$99.00</strong>
                 <del class="price-old">$170.00</del>
-                </div> <!-- price-wrap.// -->
+                </div>
                 <p class="title mb-2">T-shirts with multiple colors, for men and lady</p>
-                
+
                 <a routerLink="/cart" class="btn btn-primary">Add to cart</a>
                 <a href="#" class="btn btn-light btn-icon"> <i class="fa fa-heart"></i> </a>
               </figcaption>
               </figure>
-            </div> <!-- col end.// -->
+            </div>
             <div class="row">
                 <div class="col-lg-4 col-md-6 col-sm-6">
                   <figure class="card card-product-grid">
-                  <div class="img-wrap"> 
-                   <a routerLink='/detail'> <img src="assets/img/pc 1.jpg"> </a> 
+                  <div class="img-wrap">
+                   <a routerLink='/detail'> <img src="assets/img/pc 1.jpg"> </a>
                   </div>
                   <figcaption class="info-wrap border-top">
                     <div class="price-wrap">
                     <strong class="price">$99.00</strong>
                     <del class="price-old">$170.00</del>
-                    </div> <!-- price-wrap.// -->
+                    </div>
                     <p class="title mb-2">T-shirts with multiple colors, for men and lady</p>
-                    
+
                     <a routerLink='/cart' class="btn btn-primary">Add to cart</a>
                     <a href="#" class="btn btn-light btn-icon"> <i class="fa fa-heart"></i> </a>
                   </figcaption>
                   </figure>
-                </div> <!-- col end.// -->
-    
-      
-      <hr>
-  <footer class="d-flex mt-4">
-                
-                  <nav class="ms-3">
-                      <ul class="pagination">
-                      <li class="page-item"><a class="page-link" href="#">1</a></li>
-                      <li class="page-item active" aria-current="page">
-                          <span class="page-link">2</span>
-                      </li>
-                      <li class="page-item"><a class="page-link" href="#">3</a></li>
-                      <li class="page-item">
-                          <a class="page-link" href="#">Next</a>
-                      </li>
-                      </ul>
-                  </nav>
-                  </footer>
-                
-                 
-                  </div> 
-          
+                </div>  -->
+
+
+            <hr>
+            <footer class="d-flex mt-4">
+
+                <nav class="ms-3">
+                    <ul class="pagination">
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item active" aria-current="page">
+                            <span class="page-link">2</span>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">Next</a>
+                        </li>
+                    </ul>
+                </nav>
+            </footer>
+
+
+        </div>

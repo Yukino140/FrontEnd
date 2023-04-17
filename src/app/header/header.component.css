@@ -1,17 +1,21 @@
-.custom{
+.custom {
     color: white !important;
     font-weight: 400;
 }
-.icon{height: 500px !important;
-width: 500px !important;}
-.nav-item{
-    color: white; 
+
+.icon {
+    height: 500px !important;
+    width: 500px !important;
 }
-.subA{
+
+.nav-item {
+    color: white;
+}
+
+.subA {
     color: black;
 }
-.navbar_main{
+
+.navbar_main {
     background-color: #2937f0;
 }
-
-

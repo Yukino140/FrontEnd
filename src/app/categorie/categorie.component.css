@@ -1,2 +1,21 @@
-img{height: 300px;
-width: 200px;}
+img {
+    height: 300px;
+    width: 200px;
+}
+
+dialog {
+    animation-name: example;
+    animation-duration: 2s;
+    top: -250px;
+}
+
+@keyframes example {
+    0% {
+        top: -275px;
+        visibility: visible;
+        opacity: 1;
+    }
+    100% {
+        top: -250px;
+    }
+}

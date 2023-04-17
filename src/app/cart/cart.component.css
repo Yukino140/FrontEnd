@@ -1,4 +1,11 @@
-.titre{
+.titre {
     margin-left: 50%;
 }
-.container {margin-top: 1%;}
+
+.container {
+    margin-top: 1%;
+}
+
+.delete {
+    margin-left: 30%;
+}

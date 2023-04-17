@@ -1,154 +1,187 @@
 <section class="padding-y bg-light">
     <div class="container">
-    
-   
-    <div class="row">
-      <div class="col-lg-9">
-    
-        <div class="card">
-        <div class="content-body">
-          <h4 class="card-title mb-4">Your shopping cart</h4>
-          <article class="row gy-3 mb-4">
-            <div class="col-lg-5">
-              <figure class="itemside me-lg-5">
-                <div class="aside"><img src="assets/img/pc 3.jpg" class="img-sm img-thumbnail"></div>
-                <figcaption class="info">
-                  <a href="#" class="titre title">pc1</a>
-                
-                </figcaption>
-              </figure>
-            </div>
-            <div class="col-auto">
-              <select style="width: 100px" class="form-select">
-                <option>1</option>
-                <option>2</option>  
-                <option>3</option>  
-                <option>4</option>  
-              </select> 
-            </div>
-            <div class="col-lg-2 col-sm-4 col-6">
-              <div class="price-wrap lh-sm"> 
-                <var class="price h6">$1156.00</var>  <br>
-                <small class="text-muted"> $460.00 / per item </small> 
-              </div> <!-- price-wrap .// -->
-            </div>
-            <div class="col-lg col-sm-4">
-              <div class="float-lg-end">
-                <a href="#" class="btn btn-light"> <i class="fa fa-heart"></i></a> 
-                <a href="#" class="btn btn-light text-danger"> Remove</a>
-              </div>
-            </div>
-          </article> <!-- row.// -->
-    
-          <article class="row gy-3 mb-4">
+        <a class="btn btn-danger text-light" onclick="dialog.showModal()"> Remove All</a>
+        <dialog id="dialog">
+            <h3>Est ce-que vous étes sure</h3>
+            <form method="dialog">
+                <button class="btn btn-danger delete" (click)="deleteAll()">OUI</button>
+                <button class="btn btn-info">NON</button>
+            </form>
+        </dialog>
+        <div class="row">
+            <div class="col-lg-9">
+
+                <div class="card">
+                    <div class="content-body">
+                        <h4 class="card-title mb-4">Your shopping cart</h4>
+                        <article class="row gy-3 mb-4" *ngFor="let i of PanierFilter; let index =index">
+                            <div class="col-lg-5">
+                                <figure class="itemside me-lg-5">
+                                    <div class="aside"><img src="assets/img/pc 1.jpg" class="img-sm img-thumbnail"></div>
+                                    <figcaption class="info">
+                                        <a href="#" class="titre title">{{i.produit.nomProd}}</a>
+
+
+                                    </figcaption>
+                                </figure>
+                            </div>
+
+                            <div class="col-auto">
+
+                                <label class="form-label d-block">Quantity</label>
+                                <div class="input-group input-spinner">
+                                    <button class="btn btn-icon btn-light" type="button" (click)="substract(i,i.id,index)">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#999" viewBox="0 0 24 24">
+                                        <path d="M19 13H5v-2h14v2z"></path>
+                                      </svg>
+                                 </button>
+
+
+                                    <input class="form-control   text-center" [(ngModel)]="value" [disabled]="true" placeholder="" min="1" [formControl]="quan">
+
+                                    <button class="btn btn-icon btn-light" type="button" (click)="add(i,i.id,index)">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#999" viewBox="0 0 24 24">
+                                      <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"></path>
+                                      </svg>
+                                  </button>
+                                </div>
+
+
+
+
+
+                            </div>
+                            <div class="col-lg-2 col-sm-4 col-6">
+                                <div class="price-wrap lh-sm">
+                                    <var class="price h6">${{i.tot}}</var> <br>
+                                    <small class="text-muted"> ${{i.produit.prix}} </small>
+                                </div>
+                                <!-- price-wrap .// -->
+                            </div>
+                            <div class="col-lg col-sm-4">
+                                <div class="float-lg-end">
+                                    <a href="#" class="btn btn-light"> <i class="fa fa-heart"></i></a>
+                                    <a class="btn btn-light text-danger" (click)="delete(i.id)"> Remove</a>
+                                </div>
+                            </div>
+                        </article>
+                        <!-- row.// -->
+
+                        <!-- <article class="row gy-3 mb-4">
             <div class="col-lg-5">
               <figure class="itemside me-lg-5">
                 <div class="aside"><img src="assets/img/pc 2.jpg" class="img-sm img-thumbnail"></div>
                 <figcaption class="info">
                   <a href="#" class="titre title">pc 2</a>
-               
+
                 </figcaption>
               </figure>
             </div>
             <div class="col-auto">
               <select style="width: 100px" class="form-select">
                 <option>1</option>
-                <option>2</option>  
-                <option>3</option>  
-                <option selected>4</option>  
-              </select> 
+                <option>2</option>
+                <option>3</option>
+                <option selected>4</option>
+              </select>
             </div>
             <div class="col-lg-2 col-sm-4 col-6">
-              <div class="price-wrap lh-sm"> 
+              <div class="price-wrap lh-sm">
                 <var class="price h6">$44.80</var>  <br>
-                <small class="text-muted"> $12.20 / per item </small> 
-              </div> <!-- price-wrap .// -->
+                <small class="text-muted"> $12.20 / per item </small>
+              </div>
             </div>
             <div class="col-lg col-sm-4">
               <div class="float-lg-end">
-                <a href="#" class="btn btn-light"> <i class="fa fa-heart"></i></a> 
+                <a href="#" class="btn btn-light"> <i class="fa fa-heart"></i></a>
                 <a href="#" class="btn btn-light text-danger"> Remove</a>
               </div>
             </div>
-          </article> <!-- row.// -->
-    
+          </article>
+
           <article class="row gy-3 mb-4">
             <div class="col-lg-5">
               <figure class="itemside me-lg-5">
                 <div class="aside"><img src="assets/img/pc 1.jpg" class="img-sm img-thumbnail"></div>
                 <figcaption class="info">
                   <a href="#" class="titre title">pc 3</a>
-                 
+
                 </figcaption>
               </figure>
             </div>
             <div class="col-auto">
               <select style="width: 100px" class="form-select">
                 <option>1</option>
-                <option>2</option>  
-                <option selected>3</option>  
-                <option>4</option>  
-              </select> 
+                <option>2</option>
+                <option selected>3</option>
+                <option>4</option>
+              </select>
             </div>
             <div class="col-lg-2 col-sm-4 col-6">
-              <div class="price-wrap lh-sm"> 
+              <div class="price-wrap lh-sm">
                 <var class="price h6">$1156.00</var>  <br>
-                <small class="text-muted"> $460.00 / per item </small> 
-              </div> <!-- price-wrap .// -->
+                <small class="text-muted"> $460.00 / per item </small>
+              </div>
             </div>
             <div class="col-lg col-sm-4">
               <div class="float-lg-end">
-                <a href="#" class="btn btn-light"> <i class="fa fa-heart"></i></a> 
+                <a href="#" class="btn btn-light"> <i class="fa fa-heart"></i></a>
                 <a href="#" class="btn btn-light text-danger"> Remove</a>
               </div>
             </div>
-          </article> <!-- row.// -->
-    
-        </div> <!-- card-body .// -->
-    
-       
-    
-        </div> <!-- card.// -->
-    
-      </div> <!-- col.// -->
-      <aside class="col-lg-3">
-    
-       
-    
-        <div class="card">
-        <div class="card-body">
-          <dl class="dlist-align">
-            <dt>Total price:</dt>
-            <dd class="text-end"> $329.00</dd>
-          </dl>
-          <dl class="dlist-align">
-            <dt>Discount:</dt>
-            <dd class="text-end text-success"> - $60.00 </dd>
-          </dl>
-          <dl class="dlist-align">
-            <dt>TAX:</dt>
-            <dd class="text-end"> $14.00 </dd>
-          </dl>
-          <hr>
-          <dl class="dlist-align">
-            <dt>Total:</dt>
-            <dd class="text-end text-dark h5"> $357.90 </dd>
-          </dl>
-          
-          <div class="d-grid gap-2 my-3">
-            <a href="#" class="btn btn-success w-100"> Make Purchase </a>
-            <a routerLink='/accueil' class="btn btn-light w-100"> Back to shop </a>
-          </div>
-        </div> <!-- card-body.// -->
-        </div> <!-- card.// -->
-    
-      </aside> <!-- col.// -->
-    
-    </div> <!-- row.// -->
+          </article>  -->
 
-    
-    <br><br>
-    
-    </div> <!-- container .//  -->
-    
-   
+                    </div>
+                    <!-- card-body .// -->
+
+
+
+                </div>
+                <!-- card.// -->
+
+            </div>
+            <!-- col.// -->
+            <aside class="col-lg-3">
+
+
+
+                <div class="card">
+                    <div class="card-body">
+                        <dl class="dlist-align">
+                            <dt>Total price:</dt>
+                            <dd class="text-end"> ${{sum}}</dd>
+                        </dl>
+                        <!--<dl class="dlist-align">
+                            <dt>Discount:</dt>
+                            <dd class="text-end text-success"> - ${{discount}} </dd>
+                        </dl>
+                        <dl class="dlist-align">
+                            <dt>TAX:</dt>
+                            <dd class="text-end"> ${{tax}} </dd>
+                        </dl>
+                        <hr>
+                        <dl class="dlist-align">
+                            <dt>Total:</dt>
+                            <dd class="text-end text-dark h5"> ${{allsum}} </dd>
+                        </dl>-->
+
+                        <div class="d-grid gap-2 my-3">
+                            <a href="#" class="btn btn-success w-100"> Make Purchase </a>
+                            <a routerLink='/accueil' class="btn btn-light w-100"> Back to shop </a>
+                        </div>
+                    </div>
+                    <!-- card-body.// -->
+                </div>
+                <!-- card.// -->
+
+            </aside>
+            <!-- col.// -->
+
+        </div>
+        <!-- row.// -->
+
+
+        <br><br>
+
+    </div>
+    <!-- container .//  -->

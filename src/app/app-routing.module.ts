@@ -6,8 +6,8 @@ import { DetailComponent } from './detail/detail.component';
 import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [{path:'accueil', component:HomeComponent},
-{path:'categorie', component:CategorieComponent},
-{path:'detail', component:DetailComponent},
+{path:'categorie/:id', component:CategorieComponent},
+{path:'detail/:id', component:DetailComponent},
 {path:'panier', component:CartComponent},
 
 {path:'', redirectTo:'accueil', pathMatch:'full'}];
